@@ -22,8 +22,8 @@ ap.add_argument("-f", "--fasta", required=True, help="Fasta Sequence from which 
 ap.add_argument("-s", "--start", required=True, help="Starting base location of subsequence being extracted")
 ap.add_argument("-e", "--end", required=True, help="End base location of subsequence being extracted")
 ap.add_argument("-o", "--output", required=True, help="Output Directory")
-ap.add_argument("-r", "--reverse", help="Is the extratced sequence in the reverse orientation? Will Correct if so. Specify: Yes/No")
-ap.add_argument("-c", "--complement", help="Is the extracted sequence in the complement strand? Will correct if so. Specfify: Yes/No")
+ap.add_argument("-r", "--reverse", help="Is the extracted sequence in the reverse orientation? If specified as 'Yes' will reverse DNA sequence. Specify: Yes/No")
+ap.add_argument("-c", "--complement", help="Is the extracted sequence in the complement strand? If specified as 'Yes' will return the complement DNA sequence. Specfify: Yes/No")
 ap.add_argument("-b", "--buffer", help="Extract bases around start and finish positions")
 
 args=vars(ap.parse_args())
@@ -76,16 +76,16 @@ def fasta_iter(fasta_name):
 		header = header.next()[1:].strip()
 		seq="".join(s.strip() for s in faiter.next())
 		extract=seq[int(start):int(end)]
-		if reverse == 'No':
+		if s.lower(reverse) == 'no':
 			pass
-		elif reverse == 'Yes':
+		elif s.lower(reverse) == 'yes':
 			extract = extract[::-1]
 		else:
 			print ' Please use only "Yes" or "No" when specifying if the sequence is in reverse orientation.'
 			sys.exit()
-		if complement == 'No':
+		if s.lower(complement) == 'no':
 			pass
-		elif complement == 'Yes':
+		elif s.lower(complement) == 'yes':
 			dna=Seq(extract, generic_dna)
 			extract = str(dna.complement())
 		else:

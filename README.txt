@@ -11,7 +11,6 @@ biopython
 
 Functionality
 
-
 usage: extract_sequence_by_position.py [-h] -f FASTA -s START -e END -o OUTPUT
                                        [-r REVERSE] [-c COMPLEMENT]
                                        [-b BUFFER]
@@ -27,13 +26,17 @@ optional arguments:
   -o OUTPUT, --output OUTPUT
                         Output Directory
   -r REVERSE, --reverse REVERSE
-                        Is the extratced sequence in the reverse orientation?
-                        Will Correct if so. Specify: Yes/No
+                        Is the extracted sequence in the reverse orientation?
+                        If specified as 'Yes' will reverse DNA sequence.
+                        Specify: Yes/No
   -c COMPLEMENT, --complement COMPLEMENT
-                        Is the extracted sequence in the complement strand?
-                        Will correct if so. Specfify: Yes/No
+                        Is the extracted sequence in the complement strand? If
+                        specified as 'Yes' will return the complement DNA
+                        sequence. Specfify: Yes/No
   -b BUFFER, --buffer BUFFER
                         Extract bases around start and finish positions
+
+
 
 ### Known Errors or Issues
 
